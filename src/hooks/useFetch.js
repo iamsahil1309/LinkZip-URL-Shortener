@@ -18,6 +18,9 @@ const useFetch = (cb, options = {}) => {
       setLoading(false);
     }
   };
+  return { data, loading, error, fn };
 };
 
-return { data, loading, error, fn };
+export default useFetch
+
+

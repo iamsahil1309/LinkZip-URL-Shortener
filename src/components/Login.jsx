@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -12,12 +12,19 @@ import { Button } from "./ui/button";
 import { BeatLoader } from "react-spinners";
 import Error from "./Error";
 import * as Yup from "yup";
+import useFetch from "@/hooks/useFetch";
+import { login } from "@/db/apiAuth";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  let [searchParams] = useSearchParams();
+  const longLink = searchParams.get("createNew");
 
   const [errors, setErrors] = useState([]);
 
@@ -28,6 +35,14 @@ const Login = () => {
       [name]: value,
     }));
   };
+
+  const { data, error, loading, fn: fnLogin } = useFetch(login, formData);
+
+  useEffect(() => {
+    if (error === null && data) {
+      navigate(`/dashboard?${longLink ? `createNew=${longLink}` : ""}`);
+    }
+  }, [data, error]);
 
   const handleLogin = async () => {
     setErrors([]);
@@ -41,7 +56,8 @@ const Login = () => {
           .required("Password is required"),
       });
       await schema.validate(formData, { abortEarly: false });
-      // apicall
+
+      await fnLogin();
     } catch (e) {
       const newErrors = {};
       e?.inner?.forEach((err) => {
@@ -58,6 +74,7 @@ const Login = () => {
         <CardDescription>
           in to your account if you already have one
         </CardDescription>
+        {errors && <Error message={errors.message} />}
       </CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
@@ -81,7 +98,7 @@ const Login = () => {
       </CardContent>
       <CardFooter>
         <Button onClick={handleLogin}>
-          {true ? <BeatLoader size={10} color="#36d7b7" /> : "Login"}
+          {loading ? <BeatLoader size={10} color="#36d7b7" /> : "Login"}
         </Button>
       </CardFooter>
     </Card>
