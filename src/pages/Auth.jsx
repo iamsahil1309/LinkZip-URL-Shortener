@@ -1,4 +1,5 @@
 import Login from '@/components/Login';
+import Signup from '@/components/Signup';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import React from 'react'
 import { useSearchParams } from 'react-router-dom';
@@ -20,7 +21,9 @@ const Auth = () => {
         <TabsContent value="login">
          <Login/>
         </TabsContent>
-        <TabsContent value="signup">Change your password here.</TabsContent>
+        <TabsContent value="signup">
+          <Signup/>
+        </TabsContent>
       </Tabs>
     </div>
   );
