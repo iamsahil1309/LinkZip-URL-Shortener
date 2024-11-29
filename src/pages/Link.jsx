@@ -69,10 +69,10 @@ const Link = () => {
           </span>
           <a
             className="text-3xl sm:text-4xl text-blue-400 font-bold hover:underline cursor-pointer"
-            href={`https://linkzip.in/${link}`}
+            href={`https://link-zip-url.vercel.app/${link}`}
             target="_blank"
           >
-            https://linkzip.in/{link}
+            https://link-zip-url.vercel.app/{link}
           </a>
           <a
             className="flex items-center gap-1 hover:underline cursor-pointer"
@@ -90,7 +90,7 @@ const Link = () => {
               variant="ghost"
               onClick={() =>
                 navigator.clipboard.writeText(
-                  `https://linkzip.in/${url?.short_url}`
+                  `https://link-zip-url.vercel.app/${url?.short_url}`
                 )
               }
             >
@@ -135,8 +135,7 @@ const Link = () => {
               <CardTitle>Location Data</CardTitle>
               <LocationStats stats={stats} />
               <CardTitle>Device info</CardTitle>
-              <DeviceStats stats={stats}/>
-
+              <DeviceStats stats={stats} />
             </CardContent>
           ) : (
             <CardContent>
