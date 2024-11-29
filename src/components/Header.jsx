@@ -25,7 +25,7 @@ const Header = () => {
     <>
       <nav className="py-4 flex justify-between items-center">
         <Link to="/">
-          <img src="/logo.png" className="h-16" alt=" Logo" />
+          <img src="/logo.png" className="h-16" alt="Trimrr Logo" />
         </Link>
         <div className="flex gap-4">
           {!user ? (
@@ -53,7 +53,7 @@ const Header = () => {
                   onClick={() => {
                     fnLogout().then(() => {
                       fetchUser();
-                      navigate("/");
+                      navigate("/auth");
                     });
                   }}
                   className="text-red-400"

@@ -1,4 +1,5 @@
-import CreateLink from "@/components/CreateLink";
+
+import { CreateLink } from "@/components/CreateLink";
 import Error from "@/components/Error";
 import LinkCard from "@/components/LinkCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

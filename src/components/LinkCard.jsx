@@ -6,20 +6,27 @@ import { BeatLoader } from "react-spinners";
 import { Button } from "./ui/button";
 import { deleteUrl } from "@/db/apiUrls";
 
-const LinkCard = ({ url = [], fetchUrls }) => {
+const LinkCard = ({url = [], fetchUrls}) => {
   const downloadImage = () => {
     const imageUrl = url?.qr;
-    const fileName = url?.title;
+    const fileName = url?.title; // Desired file name for the downloaded image
+
+    // Create an anchor element
     const anchor = document.createElement("a");
     anchor.href = imageUrl;
     anchor.download = fileName;
-    
+
+    // Append the anchor to the body
     document.body.appendChild(anchor);
+
+    // Trigger the download by simulating a click event
     anchor.click();
+
+    // Remove the anchor from the document
     document.body.removeChild(anchor);
   };
 
-  const { loading: loadingDelete, fn: fnDelete } = useFetch(deleteUrl, url.id);
+  const {loading: loadingDelete, fn: fnDelete} = useFetch(deleteUrl, url.id);
 
   return (
     <div className="flex flex-col md:flex-row gap-5 border p-4 bg-gray-900 rounded-lg">
@@ -47,9 +54,7 @@ const LinkCard = ({ url = [], fetchUrls }) => {
         <Button
           variant="ghost"
           onClick={() =>
-            navigator.clipboard.writeText(
-              `https://linkzip.in/${url?.short_url}`
-            )
+            navigator.clipboard.writeText(`https://trimrr.in/${url?.short_url}`)
           }
         >
           <Copy />
@@ -69,4 +74,4 @@ const LinkCard = ({ url = [], fetchUrls }) => {
   );
 };
 
-export default LinkCard;
+export default LinkCard
