@@ -9,20 +9,13 @@ import { deleteUrl } from "@/db/apiUrls";
 const LinkCard = ({url = [], fetchUrls}) => {
   const downloadImage = () => {
     const imageUrl = url?.qr;
-    const fileName = url?.title; // Desired file name for the downloaded image
-
-    // Create an anchor element
+    const fileName = url?.title;
     const anchor = document.createElement("a");
     anchor.href = imageUrl;
     anchor.download = fileName;
 
-    // Append the anchor to the body
     document.body.appendChild(anchor);
-
-    // Trigger the download by simulating a click event
     anchor.click();
-
-    // Remove the anchor from the document
     document.body.removeChild(anchor);
   };
 
