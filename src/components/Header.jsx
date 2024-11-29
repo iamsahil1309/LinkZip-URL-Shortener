@@ -53,7 +53,7 @@ const Header = () => {
                   onClick={() => {
                     fnLogout().then(() => {
                       fetchUser();
-                      navigate("/auth");
+                      navigate("/");
                     });
                   }}
                   className="text-red-400"
